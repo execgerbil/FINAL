@@ -1,0 +1,31 @@
+%h1= @auction.title
+%h4 Details
+%p= @auction.details
+%h4 Auction End Date
+%p= @auction.ends_on
+%h4 Reserve Price (will not be made public)
+%p= @auction.reserve_price
+%h4 Current Price
+%p= @auction.current_price
+%p{class: label_class(@auction.state)}
+  = @auction.state.capitalize
+%p
+- if @auction.draft?
+  = button_to "Publish", publish_auction_path(@auction), class: "btn btn-default", method: :patch
+%p
+= link_to "Edit", edit_auction_path(@auction), class: "btn btn-info"
+|
+= link_to "Delete", @auction, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+%hr
+
+= simple_form_for [@auction, Bid.new] do |f|
+  = f.input :bid_price
+  = f.submit "Register Bid", class: "btn btn-primary"
+
+= link_to "All Auctions", root_path
+%hr
+
+.col-md-6.col-sm-6
+  - @auction.bids.each do |bid|
+    .well
+      %p= bid.bid_price

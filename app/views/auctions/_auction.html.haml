@@ -1,0 +1,11 @@
+%h2= link_to auction.title, auction
+%p= auction.details
+%h4 
+  End Date
+%p= auction.ends_on
+%h4
+  Highest Bid
+%p= auction.current_price
+%p{class: label_class(auction.state)}
+  = auction.state.capitalize
+%hr

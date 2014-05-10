@@ -1,0 +1,7 @@
+= simple_form_for @auction, html: {class: "form-horizontal"} do |f|
+  = f.input :title
+  = f.input :details
+  = f.input :ends_on
+  = f.input :reserve_price
+  = f.input :current_price
+  = f.submit "Save", class: "btn btn-primary"

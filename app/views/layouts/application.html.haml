@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title Biddr JF
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container
+      .nav.nav-bar= link_to "Home", root_path
+    .container
+      - if flash[:notice]
+        .alert.alert-success= flash[:notice]
+      - elsif flash[:alert]
+        .alert.alert-danger= flash[:alert]
+      = yield
